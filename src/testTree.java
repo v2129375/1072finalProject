@@ -5,4 +5,5 @@ public class testTree {
     void add(int in){}
     void search(int in){}
     void delete(int in){}
+    void show(){}
 }

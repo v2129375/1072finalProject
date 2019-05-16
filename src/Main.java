@@ -28,7 +28,7 @@ public class Main {
         if(choose==1){
             testTree t =new testTree(input);
             while(true){
-                System.out.println("請選擇你要做的動作   1、新增    2、刪除    3、查找    4、結束程式");
+                System.out.println("請選擇你要做的動作   1、新增    2、刪除    3、查找    4、映出    5、結束程式");
                 int choose1=sc.nextInt();
                 if(choose1==1){
                     System.out.println("請輸入要新增的元素");
@@ -39,6 +39,8 @@ public class Main {
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
                     t.search(sc.nextInt());
+                }else if(choose1==4){
+                    t.show();
                 }else{
                     break;
                 }
@@ -47,7 +49,7 @@ public class Main {
         }else if(choose==2){
             testTree t =new testTree(input);
             while(true){
-                System.out.println("請選擇你要做的動作   1、新增    2、刪除    3、查找    4、結束程式");
+                System.out.println("請選擇你要做的動作   1、新增    2、刪除    3、查找    4、映出    5、結束程式");
                 int choose1=sc.nextInt();
                 if(choose1==1){
                     System.out.println("請輸入要新增的元素");
@@ -58,6 +60,8 @@ public class Main {
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
                     t.search(sc.nextInt());
+                }else if(choose1==4){
+                    t.show();
                 }else{
                     break;
                 }
@@ -65,7 +69,7 @@ public class Main {
         }else if(choose==3){
             testTree t =new testTree(input);
             while(true){
-                System.out.println("請選擇你要做的動作   1、新增    2、刪除    3、查找    4、結束程式");
+                System.out.println("請選擇你要做的動作   1、新增    2、刪除    3、查找    4、映出    5、結束程式");
                 int choose1=sc.nextInt();
                 if(choose1==1){
                     System.out.println("請輸入要新增的元素");
@@ -76,6 +80,8 @@ public class Main {
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
                     t.search(sc.nextInt());
+                }else if(choose1==4){
+                    t.show();
                 }else{
                     break;
                 }
