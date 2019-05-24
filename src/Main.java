@@ -11,7 +11,7 @@ public class Main {
         System.out.println("是否使用隨機數？需要請輸入0,不需要請輸入其他值");
         if(sc.nextInt()==0){
             for(int i=0;i<n;i++){
-                input[i]=(int)(Math.random()*100);
+                input[i]=(int)(Math.random()*100+1);
             }
         }else{
             for(int i=0;i<n;i++){
