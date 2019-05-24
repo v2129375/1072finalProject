@@ -5,7 +5,7 @@ public class SkipList {
     SkipList(int input[]){
         int size=input.length;
         for(int i=0;i<size;i++){
-            if(front.next==null){
+            if(front.next==null){//建立第一個節點
                 front.next.data=input[i];
                 nil.next=front.next;
             }else{
