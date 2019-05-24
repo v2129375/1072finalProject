@@ -3,7 +3,7 @@ public class testTree {
 
     }
     void add(int in){}
-    void search(int in){}
+    boolean search(int in){return true;}
     void delete(int in){}
     void show(){}
 }
