@@ -11,7 +11,7 @@ public class Main {
         System.out.println("是否使用隨機數？需要請輸入0,不需要請輸入其他值");
         if(sc.nextInt()==0){
             for(int i=0;i<n;i++){
-                input[i]=(int)(Math.random()*100);
+                input[i]=(int)(Math.random()*100+1);
             }
         }else{
             for(int i=0;i<n;i++){
@@ -38,7 +38,11 @@ public class Main {
                     t.delete(sc.nextInt());
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
-                    t.search(sc.nextInt());
+                    if(t.search(sc.nextInt())==true){
+                        System.out.println("資料結構中有此元素");
+                    }else{
+                        System.out.println("資料結構中沒有此元素");
+                    };
                 }else if(choose1==4){
                     t.show();
                 }else{
@@ -59,7 +63,11 @@ public class Main {
                     t.delete(sc.nextInt());
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
-                    t.search(sc.nextInt());
+                    if(t.search(sc.nextInt())==true){
+                        System.out.println("資料結構中有此元素");
+                    }else{
+                        System.out.println("資料結構中沒有此元素");
+                    };
                 }else if(choose1==4){
                     t.show();
                 }else{
@@ -79,7 +87,11 @@ public class Main {
                     t.delete(sc.nextInt());
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
-                    t.search(sc.nextInt());
+                    if(t.search(sc.nextInt())==true){
+                        System.out.println("資料結構中有此元素");
+                    }else{
+                        System.out.println("資料結構中沒有此元素");
+                    };
                 }else if(choose1==4){
                     t.show();
                 }else{
