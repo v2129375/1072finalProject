@@ -1,27 +1,19 @@
-ï»¿import java.util.Scanner;
+package datastructure;
+import java.util.Scanner;
 import java.math.*;
-//å¦‚æœæƒ³è¦è¼¸å…¥åªæœ‰ä¸€å€‹å€¼è©²æ€éº¼è¾¦
-//åªèƒ½æŒ‰å‰åºå¾Œåºè¼¸å‡ºå—
-class Node
-{
-	int key, height;
-	Node left, right;
+import datastructure.Node;
+//Èç¹ûÏëÒªİ”ÈëÖ»ÓĞÒ»‚€ÖµÔ“ÔõüNŞk
+//Ö»ÄÜ°´Ç°ĞòááĞòİ”³ö†á
 
-	Node(int d)
-	{
-		key = d;
-		height = 1;
-	}
-}
 class AVLTree 
 { 
-	Node root; //å»ºç«‹æ ¹ç¯€é»
+	Node root; //½¨Á¢¸ù¹üc
 	
 	Node add(AVLTree tree,int key) {
 		return tree.insert(tree.root, key);
 	}
 
-	//ç¯€é»é«˜åº¦
+	//¹üc¸ß¶È
 	int height(Node N) 
 	{ 
 		if (N == null) 
@@ -29,13 +21,13 @@ class AVLTree
 		return N.height; 
 	} 
 
-	// æ‰¾å‡ºå…©å€‹å€¼ä¸­è¼ƒå¤§çš„
+	// ÕÒ³öƒÉ‚€ÖµÖĞİ^´óµÄ
 	int max(int a, int b) 
 	{ 
 		return (a > b) ? a : b; 
 	} 
 
-	// ç¯€é»çš„å³æ—‹
+	// ¹ücµÄÓÒĞı
 	Node rightRotate(Node y) 
 	{ 
 		Node x = y.left; 
@@ -50,7 +42,7 @@ class AVLTree
 		return x; 
 	} 
 
-	//ç¯€é»çš„å·¦æ—‹
+	//¹ücµÄ×óĞı
 	Node leftRotate(Node x) 
 	{ 
 		Node y = x.right; 
@@ -65,7 +57,7 @@ class AVLTree
 		return y; 
 	} 
 
-	// å–å¾—å¹³è¡¡å› å­ N
+	// È¡µÃÆ½ºâÒò×Ó N
 	int getBalance(Node N) 
 	{ 
 		if (N == null) 
@@ -73,88 +65,88 @@ class AVLTree
 		return height(N.left) - height(N.right); 
 	} 
 
-	//åŠ å…¥ç¯€é»
+	//¼ÓÈë¹üc
 	Node insert(Node node, int key) 
 	{ 
 	
-		if (node == null) //å¦‚æœç¾åœ¨ç¯€é»çˆ²ç©ºï¼Œç›´æ¥åŠ å…¥
+		if (node == null) //Èç¹û¬FÔÚ¹üc ‘¿Õ£¬Ö±½Ó¼ÓÈë
 			return (new Node(key)); 
 
-		if (key < node.key) //å¦‚æœç¯€é»ä¸çˆ²ç©ºä¸”å°æ–¼ç¾åœ¨çš„éµå€¼ï¼Œéè¿´æ”¾å…¥insert
+		if (key < node.key) //Èç¹û¹üc²» ‘¿ÕÇÒĞ¡ì¶¬FÔÚµÄæIÖµ£¬ßfŞ’·ÅÈëinsert
 			node.left = insert(node.left, key); 
 		
-		else if (key > node.key) //å¦‚æœç¯€é»ä¸çˆ²ç©ºä¸”å¤§æ–¼ç¾åœ¨çš„éµå€¼ï¼Œéè¿´æ”¾å…¥insert
+		else if (key > node.key) //Èç¹û¹üc²» ‘¿ÕÇÒ´óì¶¬FÔÚµÄæIÖµ£¬ßfŞ’·ÅÈëinsert
 			node.right = insert(node.right, key); 
-		else //å¦‚æœå·²ç¶“å«æœ‰ç›´æ¥ç›´æ¥è¿”å›ç¾åœ¨çš„node
+		else //Èç¹ûÒÑ½›º¬ÓĞÖ±½ÓÖ±½Ó·µ»Ø¬FÔÚµÄnode
 			return node; 
 
-		//æ›´æ–°ç¾åœ¨ç¯€é»é«˜åº¦
+		//¸üĞÂ¬FÔÚ¹üc¸ß¶È
 		node.height = 1 + max(height(node.left), 
 							height(node.right)); 
 
-		//å°‡ç¯€é»æ”¾å…¥åˆ¤æ–·å¹³è¡¡ä¿‚æ•¸
+		//Œ¢¹üc·ÅÈëÅĞ”àÆ½ºâ‚S”µ
 		int balance = getBalance(node); 
 
-		//å¦‚æœä¸å¹³è¡¡çš„å››ç¨®æƒ…æ³
+		//Èç¹û²»Æ½ºâµÄËÄ·NÇé›r
 		
-		//ï¼ˆ1ï¼‰LL éœ€è¦åšä¸€æ¬¡å·¦æ—‹
+		//£¨1£©LL ĞèÒª×öÒ»´Î×óĞı
 		if (balance > 1 && key < node.left.key) 
 			return rightRotate(node); 
 
-		// ï¼ˆ2ï¼‰RR éœ€è¦åšä¸€æ¬¡å³æ—‹
+		// £¨2£©RR ĞèÒª×öÒ»´ÎÓÒĞı
 		if (balance < -1 && key > node.right.key) 
 			return leftRotate(node); 
 
-		// ï¼ˆ3ï¼‰LR éœ€è¦åšä¸€æ¬¡å·¦æ—‹ä¸€æ¬¡å³æ—‹ 
+		// £¨3£©LR ĞèÒª×öÒ»´Î×óĞıÒ»´ÎÓÒĞı 
 		if (balance > 1 && key > node.left.key) 
 		{ 
 			node.left = leftRotate(node.left); 
 			return rightRotate(node); 
 		} 
 
-		// ï¼ˆ4ï¼‰LR éœ€è¦åšä¸€æ¬¡å³æ—‹ä¸€æ¬¡å·¦æ—‹ 
+		// £¨4£©LR ĞèÒª×öÒ»´ÎÓÒĞıÒ»´Î×óĞı 
 		if (balance < -1 && key < node.right.key) 
 		{ 
 			node.right = rightRotate(node.right); 
 			return leftRotate(node); 
 		} 
 
-		//å¦‚æœç¯€é»åŠ å…¥å¾Œå¹³è¡¡ç›´æ¥è¿”å›ç¯€é»
+		//Èç¹û¹üc¼ÓÈëááÆ½ºâÖ±½Ó·µ»Ø¹üc
 		return node; 
 	} 
 
-	//æ‰¾åˆ°æœ€å°çš„ç¯€é»(ä¹‹å¾Œåˆªé™¤æœƒç”¨åˆ°)
+	//ÕÒµ½×îĞ¡µÄ¹üc(Ö®áá„h³ı•şÓÃµ½)
 	Node minValueNode(Node node) 
 	{ 
 		Node current = node; 
 
-		//æ‰¾å·¦å­æ¨¹ä¸­çš„è‘‰å­å°±æ˜¯æœ€å°ç¯€é»
+		//ÕÒ×ó×Ó˜äÖĞµÄÈ~×Ó¾ÍÊÇ×îĞ¡¹üc
 		while (current.left != null) 
 		current = current.left; 
 
 		return current; 
 	} 
 	
-	//ç¯€é»çš„åˆªé™¤
+	//¹ücµÄ„h³ı
 	Node deleteNode(Node root, int key) 
 	{ 
-		// æ¨¹çˆ²ç©ºå‰‡è¿”å›ç¯€é»
+		// ˜ä ‘¿Õ„t·µ»Ø¹üc
 		if (root == null) 
 			return root; 
 
-		//å¦‚æœéœ€è¦åˆªé™¤çš„ç¯€é»çš„ç¯€é»æ¯”ç¾åœ¨æ‰€åœ¨çš„ç¯€é»éµå€¼å°ï¼Œå‰‡å°‡ç¯€é»ä¸Ÿå…¥å·¦å­æ¨¹éè¿´
+		//Èç¹ûĞèÒª„h³ıµÄ¹ücµÄ¹üc±È¬FÔÚËùÔÚµÄ¹ücæIÖµĞ¡£¬„tŒ¢¹ücGÈë×ó×Ó˜äßfŞ’
 		if (key < root.key) 
 			root.left = deleteNode(root.left, key); 
 		
-		//å¦‚æœéœ€è¦åˆªé™¤çš„ç¯€é»çš„ç¯€é»æ¯”ç¾åœ¨æ‰€åœ¨çš„ç¯€é»éµå€¼å°ï¼Œå‰‡å°‡ç¯€é»ä¸Ÿå…¥å³å­æ¨¹éè¿´
+		//Èç¹ûĞèÒª„h³ıµÄ¹ücµÄ¹üc±È¬FÔÚËùÔÚµÄ¹ücæIÖµĞ¡£¬„tŒ¢¹ücGÈëÓÒ×Ó˜äßfŞ’
 		else if (key > root.key) 
 			root.right = deleteNode(root.right, key); 
 
-		//å¦‚æœéœ€è¦åˆªé™¤çš„ç¯€é»çš„ç¯€é»ç­‰æ–¼ç¾åœ¨æ‰€åœ¨çš„ç¯€é»
+		//Èç¹ûĞèÒª„h³ıµÄ¹ücµÄ¹ücµÈì¶¬FÔÚËùÔÚµÄ¹üc
 		else
 		{ 
 
-			// ï¼ˆ1ï¼‰è¦åˆªé™¤çš„ç¯€é»æ²’æœ‰å­æ¨¹æˆ–åªæœ‰ä¸€å€‹å­æ¨¹çš„æƒ…æ³
+			// £¨1£©Òª„h³ıµÄ¹üc›]ÓĞ×Ó˜ä»òÖ»ÓĞÒ»‚€×Ó˜äµÄÇé›r
 			if ((root.left == null) || (root.right == null)) 
 			{ 
 				Node temp = null; 
@@ -163,13 +155,13 @@ class AVLTree
 				else
 					temp = root.left; 
 
-				//æ²’æœ‰å­æ¨¹
+				//›]ÓĞ×Ó˜ä
 				if (temp == null) 
 				{ 
 					temp = root; 
 					root = null; 
 				} 
-				else // æœ‰ä¸€å€‹å­æ¨¹
+				else // ÓĞÒ»‚€×Ó˜ä
 					root = temp; 
 			} 
 			
@@ -191,29 +183,29 @@ class AVLTree
 
 		
 
-		// æ›´æ–°ç¾åœ¨çš„é«˜åº¦
+		// ¸üĞÂ¬FÔÚµÄ¸ß¶È
 		root.height = max(height(root.left), height(root.right)) + 1; 
 
-		//å†æª¢æŸ¥å¹³è¡¡å› å­
+		//ÔÙ™z²éÆ½ºâÒò×Ó
 		int balance = getBalance(root); 
 
-		//ä¸å¹³è¡¡ï¼Œå†å°‡æ¨¹èª¿å¹³è¡¡ 
-		// ï¼ˆ1ï¼‰ LL 
+		//²»Æ½ºâ£¬ÔÙŒ¢˜äÕ{Æ½ºâ 
+		// £¨1£© LL 
 		if (balance > 1 && getBalance(root.left) >= 0) 
 			return rightRotate(root); 
 
-		//ï¼ˆ2ï¼‰LR
+		//£¨2£©LR
 		if (balance > 1 && getBalance(root.left) < 0) 
 		{ 
 			root.left = leftRotate(root.left); 
 			return rightRotate(root); 
 		} 
 
-		//ï¼ˆ3ï¼‰RR
+		//£¨3£©RR
 		if (balance < -1 && getBalance(root.right) <= 0) 
 			return leftRotate(root); 
 
-		// ï¼ˆ4ï¼‰RL
+		// £¨4£©RL
 		if (balance < -1 && getBalance(root.right) > 0) 
 		{ 
 			root.right = rightRotate(root.right); 
@@ -223,7 +215,7 @@ class AVLTree
 		return root; 
 	} 
 
-	//å°å‡ºæ™‚éœ€è¦ç”¨å‰åºå°å‡º
+	//Ó¡³ö•rĞèÒªÓÃÇ°ĞòÓ¡³ö
 	void preOrder(Node node) 
 	{ 
 		if (node != null) 
@@ -239,12 +231,12 @@ class AVLTree
 public class AVL {
 
 	 
-		//ä¸»ç¨‹å¼
+		//Ö÷³ÌÊ½
 		public static void main(String[] args) 
 		{ 
 			AVLTree tree = new AVLTree(); 
 
-			//æ”¾å…¥æ¨¹çš„ç¯€é»
+			//·ÅÈë˜äµÄ¹üc
 			
 			tree.add(tree, 9);
 			//tree.root = tree.insert(tree.root, 9); 
@@ -257,7 +249,7 @@ public class AVL {
 			tree.root = tree.insert(tree.root, 1); 
 			tree.root = tree.insert(tree.root, 2); 
 			
-			/* ç¾åœ¨çš„ç¯€é»
+			/* ¬FÔÚµÄ¹üc
 			9 
 			/ \ 
 			1 10 
@@ -269,9 +261,9 @@ public class AVL {
 			
 			System.out.println("Preorder traversal of "+ 
 								"constructed tree is : "); 
-			tree.preOrder(tree.root); //å‰åºé¡¯ç¤ºæ’å…¥çµæœ
+			tree.preOrder(tree.root); //Ç°Ğòï@Ê¾²åÈë½Y¹û
 
-			//åˆªé™¤ç¯€é»
+			//„h³ı¹üc
 			tree.root = tree.deleteNode(tree.root, 10); 
 
 			/* The AVL Tree after deletion of 10 
@@ -286,7 +278,7 @@ public class AVL {
 			System.out.println(""); 
 			System.out.println("Preorder traversal after "+ 
 							"deletion of 10 :"); 
-			tree.preOrder(tree.root); //å‰åºé¡¯ç¤ºåˆªé™¤çµæœ
+			tree.preOrder(tree.root); //Ç°Ğòï@Ê¾„h³ı½Y¹û
 		
 	} 
 

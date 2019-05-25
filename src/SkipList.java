@@ -1,4 +1,4 @@
-﻿public class SkipList {
+public class SkipList {
     Listnode front;//首節點指針
     Listnode nil;//尾節點指針
     Listnode sk;//第一個節點的名稱
