@@ -19,6 +19,22 @@ class AVLTree
 	Node add(int in){
 		return insert(root,in);
 	}
+	boolean search(int in){
+		if(insert(root,in).key==in){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	AVLTree(int input[]){
+
+	}
+	AVLTree(){
+
+	}
+	void delete(int in){}
+	void show(){}
+
 	//節點高度
 	int height(Node N)
 	{
