@@ -1,25 +1,25 @@
 import java.util.*;
 public class Main {
     public static void main(String arg[]){
-        System.out.println("Õˆßx“ñÄãÊ¹ÓÃµÄÙYÁÏ½Y˜‹");
-        System.out.println("1¡¢Æ½ºâ¶ş²æ˜ä  2¡¢¼tºÚ˜ä  3¡¢ÌøÜS´®ÁĞ");
+        System.out.println("è«‹é¸æ“‡ä½ ä½¿ç”¨çš„è³‡æ–™çµæ§‹");
+        System.out.println("1ã€å¹³è¡¡äºŒå‰æ¨¹  2ã€ç´…é»‘æ¨¹  3ã€è·³èºä¸²åˆ—");
         Scanner sc =new Scanner(System.in);
         int choose=sc.nextInt();
-        System.out.println("Õˆİ”ÈëÄãÒªİ”ÈëµÄ¹üc‚€”µ");
+        System.out.println("è«‹è¼¸å…¥ä½ è¦è¼¸å…¥çš„ç¯€é»å€‹æ•¸");
         int n =sc.nextInt();
         int input[]=new int[n];
-        System.out.println("ÊÇ·ñÊ¹ÓÃëS™C”µ£¿ĞèÒªÕˆİ”Èë0,²»ĞèÒªÕˆİ”ÈëÆäËûÖµ");
+        System.out.println("æ˜¯å¦ä½¿ç”¨éš¨æ©Ÿæ•¸ï¼Ÿéœ€è¦è«‹è¼¸å…¥0,ä¸éœ€è¦è«‹è¼¸å…¥å…¶ä»–å€¼");
         if(sc.nextInt()==0){
             for(int i=0;i<n;i++){
                 input[i]=(int)(Math.random()*100+1);
             }
         }else{
             for(int i=0;i<n;i++){
-                System.out.println("Õˆİ”ÈëÊ£ÏÂ"+(n-i)+"‚€¹ücµÄÖµ");
+                System.out.println("è«‹è¼¸å…¥å‰©ä¸‹"+(n-i)+"å€‹ç¯€é»çš„å€¼");
                 input[i]=sc.nextInt();
             }
         }
-        System.out.println("ß@ÊÇÄã±¾´Îİ”ÈëµÄ”µÖµ");
+        System.out.println("é€™æ˜¯ä½ æœ¬æ¬¡è¼¸å…¥çš„æ•¸å€¼");
         for(int i=0;i<n;i++){
             System.out.print(input[i]+" ");
         }
@@ -28,20 +28,20 @@ public class Main {
         if(choose==1){
             testTree t =new testTree(input);
             while(true){
-                System.out.println("Õˆßx“ñÄãÒª×öµÄ„Ó×÷   1¡¢ĞÂÔö    2¡¢„h³ı    3¡¢²éÕÒ    4¡¢Ó³³ö    5¡¢½YÊø³ÌÊ½");
+                System.out.println("è«‹é¸æ“‡ä½ è¦åšçš„å‹•ä½œ   1ã€æ–°å¢    2ã€åˆªé™¤    3ã€æŸ¥æ‰¾    4ã€æ˜ å‡º    5ã€çµæŸç¨‹å¼");
                 int choose1=sc.nextInt();
                 if(choose1==1){
-                    System.out.println("Õˆİ”ÈëÒªĞÂÔöµÄÔªËØ");
+                    System.out.println("è«‹è¼¸å…¥è¦æ–°å¢çš„å…ƒç´ ");
                     t.add(sc.nextInt());
                 }else if(choose1==2){
-                    System.out.println("Õˆİ”ÈëÒª„h³ıµÄÔªËØ");
+                    System.out.println("è«‹è¼¸å…¥è¦åˆªé™¤çš„å…ƒç´ ");
                     t.delete(sc.nextInt());
                 }else if(choose1==3){
-                    System.out.println("Õˆİ”ÈëÒª²éÕÒµÄÔªËØ");
+                    System.out.println("è«‹è¼¸å…¥è¦æŸ¥æ‰¾çš„å…ƒç´ ");
                     if(t.search(sc.nextInt())==true){
-                        System.out.println("ÙYÁÏ½Y˜‹ÖĞÓĞ´ËÔªËØ");
+                        System.out.println("è³‡æ–™çµæ§‹ä¸­æœ‰æ­¤å…ƒç´ ");
                     }else{
-                        System.out.println("ÙYÁÏ½Y˜‹ÖĞ›]ÓĞ´ËÔªËØ");
+                        System.out.println("è³‡æ–™çµæ§‹ä¸­æ²’æœ‰æ­¤å…ƒç´ ");
                     };
                 }else if(choose1==4){
                     t.show();
@@ -53,20 +53,20 @@ public class Main {
         }else if(choose==2){
             testTree t =new testTree(input);
             while(true){
-                System.out.println("Õˆßx“ñÄãÒª×öµÄ„Ó×÷   1¡¢ĞÂÔö    2¡¢„h³ı    3¡¢²éÕÒ    4¡¢Ó³³ö    5¡¢½YÊø³ÌÊ½");
+                System.out.println("è«‹é¸æ“‡ä½ è¦åšçš„å‹•ä½œ   1ã€æ–°å¢    2ã€åˆªé™¤    3ã€æŸ¥æ‰¾    4ã€æ˜ å‡º    5ã€çµæŸç¨‹å¼");
                 int choose1=sc.nextInt();
                 if(choose1==1){
-                    System.out.println("Õˆİ”ÈëÒªĞÂÔöµÄÔªËØ");
+                    System.out.println("è«‹è¼¸å…¥è¦æ–°å¢çš„å…ƒç´ ");
                     t.add(sc.nextInt());
                 }else if(choose1==2){
-                    System.out.println("Õˆİ”ÈëÒª„h³ıµÄÔªËØ");
+                    System.out.println("è«‹è¼¸å…¥è¦åˆªé™¤çš„å…ƒç´ ");
                     t.delete(sc.nextInt());
                 }else if(choose1==3){
-                    System.out.println("Õˆİ”ÈëÒª²éÕÒµÄÔªËØ");
+                    System.out.println("è«‹è¼¸å…¥è¦æŸ¥æ‰¾çš„å…ƒç´ ");
                     if(t.search(sc.nextInt())==true){
-                        System.out.println("ÙYÁÏ½Y˜‹ÖĞÓĞ´ËÔªËØ");
+                        System.out.println("è³‡æ–™çµæ§‹ä¸­æœ‰æ­¤å…ƒç´ ");
                     }else{
-                        System.out.println("ÙYÁÏ½Y˜‹ÖĞ›]ÓĞ´ËÔªËØ");
+                        System.out.println("è³‡æ–™çµæ§‹ä¸­æ²’æœ‰æ­¤å…ƒç´ ");
                     };
                 }else if(choose1==4){
                     t.show();
@@ -77,20 +77,20 @@ public class Main {
         }else if(choose==3){
             testTree t =new testTree(input);
             while(true){
-                System.out.println("Õˆßx“ñÄãÒª×öµÄ„Ó×÷   1¡¢ĞÂÔö    2¡¢„h³ı    3¡¢²éÕÒ    4¡¢Ó³³ö    5¡¢½YÊø³ÌÊ½");
+                System.out.println("è«‹é¸æ“‡ä½ è¦åšçš„å‹•ä½œ   1ã€æ–°å¢    2ã€åˆªé™¤    3ã€æŸ¥æ‰¾    4ã€æ˜ å‡º    5ã€çµæŸç¨‹å¼");
                 int choose1=sc.nextInt();
                 if(choose1==1){
-                    System.out.println("Õˆİ”ÈëÒªĞÂÔöµÄÔªËØ");
+                    System.out.println("è«‹è¼¸å…¥è¦æ–°å¢çš„å…ƒç´ ");
                     t.add(sc.nextInt());
                 }else if(choose1==2){
-                    System.out.println("Õˆİ”ÈëÒª„h³ıµÄÔªËØ");
+                    System.out.println("è«‹è¼¸å…¥è¦åˆªé™¤çš„å…ƒç´ ");
                     t.delete(sc.nextInt());
                 }else if(choose1==3){
-                    System.out.println("Õˆİ”ÈëÒª²éÕÒµÄÔªËØ");
+                    System.out.println("è«‹è¼¸å…¥è¦æŸ¥æ‰¾çš„å…ƒç´ ");
                     if(t.search(sc.nextInt())==true){
-                        System.out.println("ÙYÁÏ½Y˜‹ÖĞÓĞ´ËÔªËØ");
+                        System.out.println("è³‡æ–™çµæ§‹ä¸­æœ‰æ­¤å…ƒç´ ");
                     }else{
-                        System.out.println("ÙYÁÏ½Y˜‹ÖĞ›]ÓĞ´ËÔªËØ");
+                        System.out.println("è³‡æ–™çµæ§‹ä¸­æ²’æœ‰æ­¤å…ƒç´ ");
                     };
                 }else if(choose1==4){
                     t.show();

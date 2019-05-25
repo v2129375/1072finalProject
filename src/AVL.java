@@ -1,18 +1,27 @@
-package datastructure;
+
 import java.util.Scanner;
+
+
 import java.math.*;
-import datastructure.Node;
+
 //如果想要輸入只有一個值該怎麼辦
 //只能按前序後序輸出嗎
+class Node
 
+{ 
+	int key, height; 
+	Node left, right; 
+
+	Node(int d) 
+	{ 
+		key = d; 
+		height = 1; 
+	} 
+}
 class AVLTree 
 { 
 	Node root; //建立根節點
 	
-	Node add(AVLTree tree,int key) {
-		return tree.insert(tree.root, key);
-	}
-
 	//節點高度
 	int height(Node N) 
 	{ 
@@ -238,8 +247,8 @@ public class AVL {
 
 			//放入樹的節點
 			
-			tree.add(tree, 9);
-			//tree.root = tree.insert(tree.root, 9); 
+		
+			tree.root = tree.insert(tree.root, 9); 
 			tree.root = tree.insert(tree.root, 5); 
 			tree.root = tree.insert(tree.root, 10); 
 			tree.root = tree.insert(tree.root, 0); 
