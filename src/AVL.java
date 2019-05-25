@@ -16,7 +16,9 @@ class Node
 class AVLTree
 {
 	Node root; //建立根節點
-
+	Node add(int in){
+		return insert(root,in);
+	}
 	//節點高度
 	int height(Node N)
 	{
@@ -241,8 +243,8 @@ public class AVL {
 		AVLTree tree = new AVLTree();
 
 		//放入樹的節點
-
-		tree.root = tree.insert(tree.root, 9);
+		tree.root = tree.add(9);
+		//tree.root = tree.insert(tree.root, 9);
 		tree.root = tree.insert(tree.root, 5);
 		tree.root = tree.insert(tree.root, 10);
 		tree.root = tree.insert(tree.root, 0);
