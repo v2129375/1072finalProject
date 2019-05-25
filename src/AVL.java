@@ -1,295 +1,289 @@
-
 import java.util.Scanner;
-
-
 import java.math.*;
-
-//Èç¹ûÏëÒªİ”ÈëÖ»ÓĞÒ»‚€ÖµÔ“ÔõüNŞk
-//Ö»ÄÜ°´Ç°ĞòááĞòİ”³ö†á
+//å¦‚æœæƒ³è¦è¼¸å…¥åªæœ‰ä¸€å€‹å€¼è©²æ€éº¼è¾¦
+//åªèƒ½æŒ‰å‰åºå¾Œåºè¼¸å‡ºå—
 class Node
+{
+	int key, height;
+	Node left, right;
 
-{ 
-	int key, height; 
-	Node left, right; 
-
-	Node(int d) 
-	{ 
-		key = d; 
-		height = 1; 
-	} 
+	Node(int d)
+	{
+		key = d;
+		height = 1;
+	}
 }
-class AVLTree 
-{ 
-	Node root; //½¨Á¢¸ù¹üc
-	
-	//¹üc¸ß¶È
-	int height(Node N) 
-	{ 
-		if (N == null) 
-			return 0; 
-		return N.height; 
-	} 
+class AVLTree
+{
+	Node root; //å»ºç«‹æ ¹ç¯€é»
 
-	// ÕÒ³öƒÉ‚€ÖµÖĞİ^´óµÄ
-	int max(int a, int b) 
-	{ 
-		return (a > b) ? a : b; 
-	} 
+	//ç¯€é»é«˜åº¦
+	int height(Node N)
+	{
+		if (N == null)
+			return 0;
+		return N.height;
+	}
 
-	// ¹ücµÄÓÒĞı
-	Node rightRotate(Node y) 
-	{ 
-		Node x = y.left; 
-		Node T2 = x.right; 
- 
-		x.right = y; 
-		y.left = T2; 
+	// æ‰¾å‡ºå…©å€‹å€¼ä¸­è¼ƒå¤§çš„
+	int max(int a, int b)
+	{
+		return (a > b) ? a : b;
+	}
 
-		y.height = max(height(y.left), height(y.right)) + 1; 
-		x.height = max(height(x.left), height(x.right)) + 1; 
+	// ç¯€é»çš„å³æ—‹
+	Node rightRotate(Node y)
+	{
+		Node x = y.left;
+		Node T2 = x.right;
 
-		return x; 
-	} 
+		x.right = y;
+		y.left = T2;
 
-	//¹ücµÄ×óĞı
-	Node leftRotate(Node x) 
-	{ 
-		Node y = x.right; 
-		Node T2 = y.left; 
+		y.height = max(height(y.left), height(y.right)) + 1;
+		x.height = max(height(x.left), height(x.right)) + 1;
 
-		y.left = x; 
-		x.right = T2; 
+		return x;
+	}
 
-		x.height = max(height(x.left), height(x.right)) + 1; 
-		y.height = max(height(y.left), height(y.right)) + 1; 
+	//ç¯€é»çš„å·¦æ—‹
+	Node leftRotate(Node x)
+	{
+		Node y = x.right;
+		Node T2 = y.left;
 
-		return y; 
-	} 
+		y.left = x;
+		x.right = T2;
 
-	// È¡µÃÆ½ºâÒò×Ó N
-	int getBalance(Node N) 
-	{ 
-		if (N == null) 
-			return 0; 
-		return height(N.left) - height(N.right); 
-	} 
+		x.height = max(height(x.left), height(x.right)) + 1;
+		y.height = max(height(y.left), height(y.right)) + 1;
 
-	//¼ÓÈë¹üc
-	Node insert(Node node, int key) 
-	{ 
-	
-		if (node == null) //Èç¹û¬FÔÚ¹üc ‘¿Õ£¬Ö±½Ó¼ÓÈë
-			return (new Node(key)); 
+		return y;
+	}
 
-		if (key < node.key) //Èç¹û¹üc²» ‘¿ÕÇÒĞ¡ì¶¬FÔÚµÄæIÖµ£¬ßfŞ’·ÅÈëinsert
-			node.left = insert(node.left, key); 
-		
-		else if (key > node.key) //Èç¹û¹üc²» ‘¿ÕÇÒ´óì¶¬FÔÚµÄæIÖµ£¬ßfŞ’·ÅÈëinsert
-			node.right = insert(node.right, key); 
-		else //Èç¹ûÒÑ½›º¬ÓĞÖ±½ÓÖ±½Ó·µ»Ø¬FÔÚµÄnode
-			return node; 
+	// å–å¾—å¹³è¡¡å› å­ N
+	int getBalance(Node N)
+	{
+		if (N == null)
+			return 0;
+		return height(N.left) - height(N.right);
+	}
 
-		//¸üĞÂ¬FÔÚ¹üc¸ß¶È
-		node.height = 1 + max(height(node.left), 
-							height(node.right)); 
+	//åŠ å…¥ç¯€é»
+	Node insert(Node node, int key)
+	{
 
-		//Œ¢¹üc·ÅÈëÅĞ”àÆ½ºâ‚S”µ
-		int balance = getBalance(node); 
+		if (node == null) //å¦‚æœç¾åœ¨ç¯€é»çˆ²ç©ºï¼Œç›´æ¥åŠ å…¥
+			return (new Node(key));
 
-		//Èç¹û²»Æ½ºâµÄËÄ·NÇé›r
-		
-		//£¨1£©LL ĞèÒª×öÒ»´Î×óĞı
-		if (balance > 1 && key < node.left.key) 
-			return rightRotate(node); 
+		if (key < node.key) //å¦‚æœç¯€é»ä¸çˆ²ç©ºä¸”å°æ–¼ç¾åœ¨çš„éµå€¼ï¼Œéè¿´æ”¾å…¥insert
+			node.left = insert(node.left, key);
 
-		// £¨2£©RR ĞèÒª×öÒ»´ÎÓÒĞı
-		if (balance < -1 && key > node.right.key) 
-			return leftRotate(node); 
+		else if (key > node.key) //å¦‚æœç¯€é»ä¸çˆ²ç©ºä¸”å¤§æ–¼ç¾åœ¨çš„éµå€¼ï¼Œéè¿´æ”¾å…¥insert
+			node.right = insert(node.right, key);
+		else //å¦‚æœå·²ç¶“å«æœ‰ç›´æ¥ç›´æ¥è¿”å›ç¾åœ¨çš„node
+			return node;
 
-		// £¨3£©LR ĞèÒª×öÒ»´Î×óĞıÒ»´ÎÓÒĞı 
-		if (balance > 1 && key > node.left.key) 
-		{ 
-			node.left = leftRotate(node.left); 
-			return rightRotate(node); 
-		} 
+		//æ›´æ–°ç¾åœ¨ç¯€é»é«˜åº¦
+		node.height = 1 + max(height(node.left),
+				height(node.right));
 
-		// £¨4£©LR ĞèÒª×öÒ»´ÎÓÒĞıÒ»´Î×óĞı 
-		if (balance < -1 && key < node.right.key) 
-		{ 
-			node.right = rightRotate(node.right); 
-			return leftRotate(node); 
-		} 
+		//å°‡ç¯€é»æ”¾å…¥åˆ¤æ–·å¹³è¡¡ä¿‚æ•¸
+		int balance = getBalance(node);
 
-		//Èç¹û¹üc¼ÓÈëááÆ½ºâÖ±½Ó·µ»Ø¹üc
-		return node; 
-	} 
+		//å¦‚æœä¸å¹³è¡¡çš„å››ç¨®æƒ…æ³
 
-	//ÕÒµ½×îĞ¡µÄ¹üc(Ö®áá„h³ı•şÓÃµ½)
-	Node minValueNode(Node node) 
-	{ 
-		Node current = node; 
+		//ï¼ˆ1ï¼‰LL éœ€è¦åšä¸€æ¬¡å·¦æ—‹
+		if (balance > 1 && key < node.left.key)
+			return rightRotate(node);
 
-		//ÕÒ×ó×Ó˜äÖĞµÄÈ~×Ó¾ÍÊÇ×îĞ¡¹üc
-		while (current.left != null) 
-		current = current.left; 
+		// ï¼ˆ2ï¼‰RR éœ€è¦åšä¸€æ¬¡å³æ—‹
+		if (balance < -1 && key > node.right.key)
+			return leftRotate(node);
 
-		return current; 
-	} 
-	
-	//¹ücµÄ„h³ı
-	Node deleteNode(Node root, int key) 
-	{ 
-		// ˜ä ‘¿Õ„t·µ»Ø¹üc
-		if (root == null) 
-			return root; 
+		// ï¼ˆ3ï¼‰LR éœ€è¦åšä¸€æ¬¡å·¦æ—‹ä¸€æ¬¡å³æ—‹
+		if (balance > 1 && key > node.left.key)
+		{
+			node.left = leftRotate(node.left);
+			return rightRotate(node);
+		}
 
-		//Èç¹ûĞèÒª„h³ıµÄ¹ücµÄ¹üc±È¬FÔÚËùÔÚµÄ¹ücæIÖµĞ¡£¬„tŒ¢¹ücGÈë×ó×Ó˜äßfŞ’
-		if (key < root.key) 
-			root.left = deleteNode(root.left, key); 
-		
-		//Èç¹ûĞèÒª„h³ıµÄ¹ücµÄ¹üc±È¬FÔÚËùÔÚµÄ¹ücæIÖµĞ¡£¬„tŒ¢¹ücGÈëÓÒ×Ó˜äßfŞ’
-		else if (key > root.key) 
-			root.right = deleteNode(root.right, key); 
+		// ï¼ˆ4ï¼‰LR éœ€è¦åšä¸€æ¬¡å³æ—‹ä¸€æ¬¡å·¦æ—‹
+		if (balance < -1 && key < node.right.key)
+		{
+			node.right = rightRotate(node.right);
+			return leftRotate(node);
+		}
 
-		//Èç¹ûĞèÒª„h³ıµÄ¹ücµÄ¹ücµÈì¶¬FÔÚËùÔÚµÄ¹üc
+		//å¦‚æœç¯€é»åŠ å…¥å¾Œå¹³è¡¡ç›´æ¥è¿”å›ç¯€é»
+		return node;
+	}
+
+	//æ‰¾åˆ°æœ€å°çš„ç¯€é»(ä¹‹å¾Œåˆªé™¤æœƒç”¨åˆ°)
+	Node minValueNode(Node node)
+	{
+		Node current = node;
+
+		//æ‰¾å·¦å­æ¨¹ä¸­çš„è‘‰å­å°±æ˜¯æœ€å°ç¯€é»
+		while (current.left != null)
+			current = current.left;
+
+		return current;
+	}
+
+	//ç¯€é»çš„åˆªé™¤
+	Node deleteNode(Node root, int key)
+	{
+		// æ¨¹çˆ²ç©ºå‰‡è¿”å›ç¯€é»
+		if (root == null)
+			return root;
+
+		//å¦‚æœéœ€è¦åˆªé™¤çš„ç¯€é»çš„ç¯€é»æ¯”ç¾åœ¨æ‰€åœ¨çš„ç¯€é»éµå€¼å°ï¼Œå‰‡å°‡ç¯€é»ä¸Ÿå…¥å·¦å­æ¨¹éè¿´
+		if (key < root.key)
+			root.left = deleteNode(root.left, key);
+
+			//å¦‚æœéœ€è¦åˆªé™¤çš„ç¯€é»çš„ç¯€é»æ¯”ç¾åœ¨æ‰€åœ¨çš„ç¯€é»éµå€¼å°ï¼Œå‰‡å°‡ç¯€é»ä¸Ÿå…¥å³å­æ¨¹éè¿´
+		else if (key > root.key)
+			root.right = deleteNode(root.right, key);
+
+			//å¦‚æœéœ€è¦åˆªé™¤çš„ç¯€é»çš„ç¯€é»ç­‰æ–¼ç¾åœ¨æ‰€åœ¨çš„ç¯€é»
 		else
-		{ 
+		{
 
-			// £¨1£©Òª„h³ıµÄ¹üc›]ÓĞ×Ó˜ä»òÖ»ÓĞÒ»‚€×Ó˜äµÄÇé›r
-			if ((root.left == null) || (root.right == null)) 
-			{ 
-				Node temp = null; 
-				if (temp == root.left) 
-					temp = root.right; 
+			// ï¼ˆ1ï¼‰è¦åˆªé™¤çš„ç¯€é»æ²’æœ‰å­æ¨¹æˆ–åªæœ‰ä¸€å€‹å­æ¨¹çš„æƒ…æ³
+			if ((root.left == null) || (root.right == null))
+			{
+				Node temp = null;
+				if (temp == root.left)
+					temp = root.right;
 				else
-					temp = root.left; 
+					temp = root.left;
 
-				//›]ÓĞ×Ó˜ä
-				if (temp == null) 
-				{ 
-					temp = root; 
-					root = null; 
-				} 
-				else // ÓĞÒ»‚€×Ó˜ä
-					root = temp; 
-			} 
-			
-			
+				//æ²’æœ‰å­æ¨¹
+				if (temp == null)
+				{
+					temp = root;
+					root = null;
+				}
+				else // æœ‰ä¸€å€‹å­æ¨¹
+					root = temp;
+			}
+
+
 			else
-			{ 
+			{
 
-				// node with two children: Get the inorder 
-				// successor (smallest in the right subtree) 
-				Node temp = minValueNode(root.right); 
+				// node with two children: Get the inorder
+				// successor (smallest in the right subtree)
+				Node temp = minValueNode(root.right);
 
-				// Copy the inorder successor's data to this node 
-				root.key = temp.key; 
+				// Copy the inorder successor's data to this node
+				root.key = temp.key;
 
-				// Delete the inorder successor 
-				root.right = deleteNode(root.right, temp.key); 
-			} 
-		} 
+				// Delete the inorder successor
+				root.right = deleteNode(root.right, temp.key);
+			}
+		}
 
-		
 
-		// ¸üĞÂ¬FÔÚµÄ¸ß¶È
-		root.height = max(height(root.left), height(root.right)) + 1; 
 
-		//ÔÙ™z²éÆ½ºâÒò×Ó
-		int balance = getBalance(root); 
+		// æ›´æ–°ç¾åœ¨çš„é«˜åº¦
+		root.height = max(height(root.left), height(root.right)) + 1;
 
-		//²»Æ½ºâ£¬ÔÙŒ¢˜äÕ{Æ½ºâ 
-		// £¨1£© LL 
-		if (balance > 1 && getBalance(root.left) >= 0) 
-			return rightRotate(root); 
+		//å†æª¢æŸ¥å¹³è¡¡å› å­
+		int balance = getBalance(root);
 
-		//£¨2£©LR
-		if (balance > 1 && getBalance(root.left) < 0) 
-		{ 
-			root.left = leftRotate(root.left); 
-			return rightRotate(root); 
-		} 
+		//ä¸å¹³è¡¡ï¼Œå†å°‡æ¨¹èª¿å¹³è¡¡
+		// ï¼ˆ1ï¼‰ LL
+		if (balance > 1 && getBalance(root.left) >= 0)
+			return rightRotate(root);
 
-		//£¨3£©RR
-		if (balance < -1 && getBalance(root.right) <= 0) 
-			return leftRotate(root); 
+		//ï¼ˆ2ï¼‰LR
+		if (balance > 1 && getBalance(root.left) < 0)
+		{
+			root.left = leftRotate(root.left);
+			return rightRotate(root);
+		}
 
-		// £¨4£©RL
-		if (balance < -1 && getBalance(root.right) > 0) 
-		{ 
-			root.right = rightRotate(root.right); 
-			return leftRotate(root); 
-		} 
+		//ï¼ˆ3ï¼‰RR
+		if (balance < -1 && getBalance(root.right) <= 0)
+			return leftRotate(root);
 
-		return root; 
-	} 
+		// ï¼ˆ4ï¼‰RL
+		if (balance < -1 && getBalance(root.right) > 0)
+		{
+			root.right = rightRotate(root.right);
+			return leftRotate(root);
+		}
 
-	//Ó¡³ö•rĞèÒªÓÃÇ°ĞòÓ¡³ö
-	void preOrder(Node node) 
-	{ 
-		if (node != null) 
-		{ 
-			System.out.print(node.key + " "); 
-			preOrder(node.left); 
-			preOrder(node.right); 
-		} 
-	} 
+		return root;
+	}
+
+	//å°å‡ºæ™‚éœ€è¦ç”¨å‰åºå°å‡º
+	void preOrder(Node node)
+	{
+		if (node != null)
+		{
+			System.out.print(node.key + " ");
+			preOrder(node.left);
+			preOrder(node.right);
+		}
+	}
 }
 
 
 public class AVL {
 
-	 
-		//Ö÷³ÌÊ½
-		public static void main(String[] args) 
-		{ 
-			AVLTree tree = new AVLTree(); 
 
-			//·ÅÈë˜äµÄ¹üc
-			
-		
-			tree.root = tree.insert(tree.root, 9); 
-			tree.root = tree.insert(tree.root, 5); 
-			tree.root = tree.insert(tree.root, 10); 
-			tree.root = tree.insert(tree.root, 0); 
-			tree.root = tree.insert(tree.root, 6); 
-			tree.root = tree.insert(tree.root, 11); 
-			tree.root = tree.insert(tree.root, -1); 
-			tree.root = tree.insert(tree.root, 1); 
-			tree.root = tree.insert(tree.root, 2); 
-			
-			/* ¬FÔÚµÄ¹üc
-			9 
-			/ \ 
-			1 10 
-			/ \ \ 
-			0 5 11 
-			/ / \ 
-			-1 2 6 
+	//ä¸»ç¨‹å¼
+	public static void main(String[] args)
+	{
+		AVLTree tree = new AVLTree();
+
+		//æ”¾å…¥æ¨¹çš„ç¯€é»
+
+		tree.root = tree.insert(tree.root, 9);
+		tree.root = tree.insert(tree.root, 5);
+		tree.root = tree.insert(tree.root, 10);
+		tree.root = tree.insert(tree.root, 0);
+		tree.root = tree.insert(tree.root, 6);
+		tree.root = tree.insert(tree.root, 11);
+		tree.root = tree.insert(tree.root, -1);
+		tree.root = tree.insert(tree.root, 1);
+		tree.root = tree.insert(tree.root, 2);
+
+			/* ç¾åœ¨çš„ç¯€é»
+			9
+			/ \
+			1 10
+			/ \ \
+			0 5 11
+			/ / \
+			-1 2 6
 			*/
-			
-			System.out.println("Preorder traversal of "+ 
-								"constructed tree is : "); 
-			tree.preOrder(tree.root); //Ç°Ğòï@Ê¾²åÈë½Y¹û
 
-			//„h³ı¹üc
-			tree.root = tree.deleteNode(tree.root, 10); 
+		System.out.println("Preorder traversal of "+
+				"constructed tree is : ");
+		tree.preOrder(tree.root); //å‰åºé¡¯ç¤ºæ’å…¥çµæœ
 
-			/* The AVL Tree after deletion of 10 
-			1 
-			/ \ 
-			0 9 
-			/	 / \ 
-			-1 5 11 
-			/ \ 
-			2 6 
+		//åˆªé™¤ç¯€é»
+		tree.root = tree.deleteNode(tree.root, 10);
+
+			/* The AVL Tree after deletion of 10
+			1
+			/ \
+			0 9
+			/	 / \
+			-1 5 11
+			/ \
+			2 6
 			*/
-			System.out.println(""); 
-			System.out.println("Preorder traversal after "+ 
-							"deletion of 10 :"); 
-			tree.preOrder(tree.root); //Ç°Ğòï@Ê¾„h³ı½Y¹û
-		
-	} 
+		System.out.println("");
+		System.out.println("Preorder traversal after "+
+				"deletion of 10 :");
+		tree.preOrder(tree.root); //å‰åºé¡¯ç¤ºåˆªé™¤çµæœ
+
+	}
 
 
 }
