@@ -2,8 +2,10 @@ public class testTree {
     testTree(int input[]){
 
     }
-    void add(int in){}
-    void search(int in){}
+    void add(int in){
+        
+    }
+    boolean search(int in){return true;}
     void delete(int in){}
     void show(){}
 }
