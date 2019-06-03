@@ -27,6 +27,7 @@ public class Main {
 
         if(choose==1){
             AVLTree t =new AVLTree(input);
+            //System.out.println("t="+t);
             while(true){
                 System.out.println("請選擇你要做的動作   1、新增    2、刪除    3、查找    4、映出    5、結束程式");
                 int choose1=sc.nextInt();

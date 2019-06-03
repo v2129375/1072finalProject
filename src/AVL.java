@@ -27,13 +27,19 @@ class AVLTree
 		}
 	}
 	AVLTree(int input[]){
-
+		int size=input.length;
+		root.key=input[0];
+		for(int i=1;i<size;i++){
+			root=add(input[i]);
+			}
 	}
-	AVLTree(){
 
+	Node delete(int in){
+		return deleteNode(root,in);
 	}
-	void delete(int in){}
-	void show(){}
+	void show(){
+		preOrder(root);
+	}
 
 	//節點高度
 	int height(Node N)
@@ -250,25 +256,25 @@ class AVLTree
 }
 
 
-public class AVL {
+//public class AVL {
 
 
 	//主程式
-	public static void main(String[] args)
-	{
-		AVLTree tree = new AVLTree();
+	//public static void main(String[] args)
+	//{
+		//AVLTree tree = new AVLTree(int a[]);
 
 		//放入樹的節點
-		tree.root = tree.add(9);
+		//tree.root = tree.add(9);
 		//tree.root = tree.insert(tree.root, 9);
-		tree.root = tree.insert(tree.root, 5);
-		tree.root = tree.insert(tree.root, 10);
-		tree.root = tree.insert(tree.root, 0);
-		tree.root = tree.insert(tree.root, 6);
-		tree.root = tree.insert(tree.root, 11);
-		tree.root = tree.insert(tree.root, -1);
-		tree.root = tree.insert(tree.root, 1);
-		tree.root = tree.insert(tree.root, 2);
+		//tree.root = tree.insert(tree.root, 5);
+		//tree.root = tree.insert(tree.root, 10);
+		//tree.root = tree.insert(tree.root, 0);
+		//tree.root = tree.insert(tree.root, 6);
+		//tree.root = tree.insert(tree.root, 11);
+		//tree.root = tree.insert(tree.root, -1);
+		//tree.root = tree.insert(tree.root, 1);
+		//tree.root = tree.insert(tree.root, 2);
 
 			/* 現在的節點
 			9
@@ -280,12 +286,12 @@ public class AVL {
 			-1 2 6
 			*/
 
-		System.out.println("Preorder traversal of "+
+		/* System.out.println("Preorder traversal of "+
 				"constructed tree is : ");
 		tree.preOrder(tree.root); //前序顯示插入結果
 
 		//刪除節點
-		tree.root = tree.deleteNode(tree.root, 10);
+		tree.root = tree.deleteNode(tree.root, 10);*/
 
 			/* The AVL Tree after deletion of 10
 			1
@@ -296,7 +302,7 @@ public class AVL {
 			/ \
 			2 6
 			*/
-		System.out.println("");
+		/*System.out.println("");
 		System.out.println("Preorder traversal after "+
 				"deletion of 10 :");
 		tree.preOrder(tree.root); //前序顯示刪除結果
@@ -304,4 +310,5 @@ public class AVL {
 	}
 
 
-}
+}*/
+
