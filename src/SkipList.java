@@ -1,23 +1,33 @@
 public class SkipList {
-    Listnode front;//首節點指針
-    Listnode nil;//尾節點指針
-    Listnode sk;//第一個節點的名稱
+    Listnode first;//最上方第一個節點指針
+    Listnode down;//尾節點指針
+    Listnode right;//右節點指針
+    Listnode left;//左節點指針
+    int level;
     SkipList(int input[]){
         int size=input.length;
         for(int i=0;i<size;i++){
-            if(front.right==null){//建立第一個節點
-                front.right.data=input[i];
-                nil.right=front.right;
-            }else{
-                add(input[i]);
-            }
-
-
+            add(input[i]);
         }
 
     }
-    void add(int in){}
-    boolean search(int in){return true;}
+    void add(int in){
+        if(first.right.data==0){
+            first.right.data=in;
+        }else{
+            if(search(in)==true){
+                System.out.println("重複的節點");//遇到重複節點不添加，回傳錯誤信息
+            }else{
+                Listnode temp=first;
+                while(in<temp.right.data&&temp.right.data!=0){
+                    temp.right=temp.right.right;
+                }
+            }
+        }
+    }
+    boolean search(int in){
+        return true;
+    }
     void delete(int in){}
     void show(){}
 }
