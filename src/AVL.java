@@ -12,10 +12,11 @@ class Node
 		key = d;
 		height = 1;
 	}
+	Node(){}
 }
 class AVLTree
 {
-	Node root; //建立根節點
+	Node root=new Node(); //建立根節點
 	Node add(int in){
 		return insert(root,in);
 	}
@@ -31,7 +32,7 @@ class AVLTree
 		root.key=input[0];
 		for(int i=1;i<size;i++){
 			root=add(input[i]);
-			}
+		}
 	}
 
 	Node delete(int in){
