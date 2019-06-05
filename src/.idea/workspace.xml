@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00118998-164b-49e2-a005-7195616d376d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../out/production/1072finalProject/.idea/1072finalProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../out/production/1072finalProject/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../out/production/1072finalProject/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../out/production/1072finalProject/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/1072finalProject/AVLTree.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/1072finalProject/AVLTree.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/1072finalProject/Listnode.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/1072finalProject/Listnode.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/1072finalProject/SkipList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/1072finalProject/SkipList.class" afterDir="false" />
@@ -25,7 +18,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
+            <state relative-caret-position="183">
               <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
             </state>
           </provider>
@@ -103,7 +96,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.261924" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -141,7 +133,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
+        <state relative-caret-position="183">
           <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
         </state>
       </provider>

@@ -1,5 +1,6 @@
-import java.util.Scanner;
+import java.util.*;
 import java.math.*;
+
 //如果想要輸入只有一個值該怎麼辦
 //只能按前序後序輸出嗎
 class Node
@@ -14,6 +15,7 @@ class Node
 	}
 	Node(){}
 }
+
 class AVLTree
 {
 	Node root=new Node(); //建立根節點
@@ -28,18 +30,23 @@ class AVLTree
             return true;
         }else{
             return false;*/
-		if(node==null){
-            return false;
-        }
-        boolean exit=false;
-        if(root.key==in){
-                exit=true;
+        if(node.key==in){
+                return true;
 		}else{
-			if(in < root.key){ searchnode(node.left,in);}
-			else{ searchnode(node.right, in);}
+			if(in < node.key){
+			    if(node.left==null){
+			    	return false;
+				}else{
+					return searchnode(node.left,in);
+				}
+			}else{
+				if(node.right==null){
+					return  false;
+				}else{
+					return searchnode(node.right, in);
+				}
+			}
 		}
-
-        return exit;
     }
 
 	AVLTree(int input[]){
@@ -55,7 +62,30 @@ class AVLTree
 	}
 
 	void show(){
-		preOrder(root);
+		Queue<Node> q = new LinkedList<>();
+		q.add(root);//將根節點放入q
+
+		int cnt = 1;//層數
+		while(cnt > 0){
+			int tmp = 0;//記錄子樹數量
+
+			for(int i=0;i<cnt;i++){
+
+				Node cur = q.poll();//將q中的節點拿出來
+				if(cur.left != null) {
+					q.add(cur.left);//加入左子節點
+					tmp++;//計算子節點總數
+				}
+				if(cur.right != null) {
+					q.add(cur.right);
+					tmp++;
+				}
+				System.out.print(cur.key);
+
+			}
+			cnt = tmp;
+			System.out.println();
+		}
 	}
 
 	//節點高度
@@ -177,6 +207,7 @@ class AVLTree
 	}
 
 	//節點的刪除
+
 	Node deleteNode(Node root, int key)
 	{
 		// 樹爲空則返回節點
@@ -235,8 +266,10 @@ class AVLTree
 
 
 
-		// 更新現在的高度
-		root.height = max(height(root.left), height(root.right)) + 1;
+		try{
+			root.height = max(height(root.left), height(root.right)) + 1;// 更新現在的高度
+		}catch (NullPointerException e){}
+
 
 		//再檢查平衡因子
 		int balance = getBalance(root);
@@ -267,8 +300,10 @@ class AVLTree
 		return root;
 	}
 
+
+
 	//印出時需要用前序印出
-	void preOrder(Node node)
+	/*void preOrder(Node node)
 	{
 		if (node != null)
 		{
@@ -276,7 +311,10 @@ class AVLTree
 			preOrder(node.left);
 			preOrder(node.right);
 		}
-	}
+		else{
+			System.out.print("0");
+		}
+	}*/
 }
 
 
