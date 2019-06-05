@@ -20,13 +20,28 @@ class AVLTree
 	Node add(int in){
 		return insert(root,in);
 	}
-	boolean search(int in){
-		if(insert(root,in).key==in){
-			return true;
+	boolean search (int i){return searchnode(root,i);}
+
+	boolean searchnode(Node node, int in){
+		/*if(insert(root,in).key==in){
+        if(insert(root,in).key==in){
+            return true;
+        }else{
+            return false;*/
+		if(node==null){
+            return false;
+        }
+        boolean exit=false;
+        if(root.key==in){
+                exit=true;
 		}else{
-			return false;
+			if(in < root.key){ searchnode(node.left,in);}
+			else{ searchnode(node.right, in);}
 		}
-	}
+
+        return exit;
+    }
+
 	AVLTree(int input[]){
 		int size=input.length;
 		root.key=input[0];
@@ -38,6 +53,7 @@ class AVLTree
 	Node delete(int in){
 		return deleteNode(root,in);
 	}
+
 	void show(){
 		preOrder(root);
 	}
@@ -106,8 +122,12 @@ class AVLTree
 
 		else if (key > node.key) //如果節點不爲空且大於現在的鍵值，遞迴放入insert
 			node.right = insert(node.right, key);
-		else //如果已經含有直接直接返回現在的node
-			return node;
+		else {
+		    System.out.println("此節點已存在");
+            return node;
+            //如果已經含有直接直接返回現在的node
+        }
+
 
 		//更新現在節點高度
 		node.height = 1 + max(height(node.left),
@@ -160,8 +180,11 @@ class AVLTree
 	Node deleteNode(Node root, int key)
 	{
 		// 樹爲空則返回節點
-		if (root == null)
-			return root;
+		if (root == null){
+		    System.out.println("此節點不存在");
+            return root;
+        }
+
 
 		//如果需要刪除的節點的節點比現在所在的節點鍵值小，則將節點丟入左子樹遞迴
 		if (key < root.key)
