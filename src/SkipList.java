@@ -8,7 +8,7 @@ public class SkipList {
     int level;
     SkipList(int input[]){
         int size=input.length;
-        level=(int)log(size,2);
+        level=(int)log(size,2);//計算最大層數
         System.out.println("跳躍串列的最大層數是"+level);
         first=new ListNode(Integer.MIN_VALUE);
         first.right=new ListNode(Integer.MAX_VALUE);
@@ -20,7 +20,7 @@ public class SkipList {
             newList=newList.down;
             newList.right=new ListNode(Integer.MAX_VALUE);
             rightConnect(newList,newList.right);
-        }
+        }//在每一層的首尾添加無限大的值
         for(int i=0;i<size;i++){//System.out.println("call add");
             add(input[i]);
             //show();
@@ -119,12 +119,12 @@ public class SkipList {
     void show(){
         for(int i=level;i>0;i--){
             System.out.print("Level"+i+":");//添加層數標記
-            searchTemp=first;//從頭開始搜索
-            for(int j=i;j<level;j++){
+            searchTemp=first;//從頭開始映出
+            for(int j=i;j<level;j++){//每映出完一層就重新計算層數
                 searchTemp=searchTemp.down;
             }
             while (searchTemp.data<=100){
-                if(searchTemp.data>0){
+                if(searchTemp.data>0){//不映出首尾的無線大值
                     System.out.print(" "+searchTemp.data);
                 }
                 searchTemp=searchTemp.right;
