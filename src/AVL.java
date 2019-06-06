@@ -22,6 +22,7 @@ class AVLTree
 	Node add(int in){
 		return insert(root,in);
 	}
+
 	boolean search (int i){return searchnode(root,i);}
 
 	boolean searchnode(Node node, int in){
@@ -65,23 +66,42 @@ class AVLTree
 		Queue<Node> q = new LinkedList<>();
 		q.add(root);//將根節點放入q
 
-		int cnt = 1;//層數
+		int cnt = 1;//每一層個數
 		while(cnt > 0){
 			int tmp = 0;//記錄子樹數量
-
+			/*for(int i=root.height-1;i>0;i--){
+				System.out.print("	");
+			}*/
 			for(int i=0;i<cnt;i++){
 
 				Node cur = q.poll();//將q中的節點拿出來
+				Node zero=new Node();;
+				zero.key=0;
 				if(cur.left != null) {
-					q.add(cur.left);//加入左子節點
-					tmp++;//計算子節點總數
+					if(cur.right!= null){
+						q.add(cur.left);//加入左子節點
+						tmp++;//計算子節點總數
+					}
+					else{
+						q.add(cur.left);
+						q.add(zero);
+						tmp+=2;
+					}
 				}
 				if(cur.right != null) {
-					q.add(cur.right);
-					tmp++;
-				}
-				System.out.print(cur.key);
+					if(cur.left!= null){
+						q.add(cur.right);
+						tmp++;
+					}
+					else{
+						q.add(zero);
+						q.add(cur.right);
+						tmp+=2;
+					}
 
+				}
+
+				System.out.print(cur.key+"	");
 			}
 			cnt = tmp;
 			System.out.println();
@@ -233,13 +253,12 @@ class AVLTree
 			if ((root.left == null) || (root.right == null))
 			{
 				Node temp = null;
-				if (temp == root.left)
+				if (temp == root.left)//如果左節點為NULL
 					temp = root.right;
-				else
+				else//如果左節點不爲NULL
 					temp = root.left;
 
-				//沒有子樹
-				if (temp == null)
+				if (temp == null)//如果沒有子樹
 				{
 					temp = root;
 					root = null;
