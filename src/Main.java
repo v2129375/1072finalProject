@@ -39,7 +39,7 @@ public class Main {
                     t.delete(sc.nextInt());
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
-                    if(t.search(sc.nextInt())==true){
+                    if(t.search(sc.nextInt())){
                         System.out.println("資料結構中有此元素");
                     }else{
                         System.out.println("資料結構中沒有此元素");
@@ -64,7 +64,7 @@ public class Main {
                     t.delete(sc.nextInt());
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
-                    if(t.search(sc.nextInt())==true){
+                    if(t.search(sc.nextInt())){
                         System.out.println("資料結構中有此元素");
                     }else{
                         System.out.println("資料結構中沒有此元素");
@@ -88,7 +88,7 @@ public class Main {
                     t.delete(sc.nextInt());
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
-                    if(t.search(sc.nextInt())==true){
+                    if(t.search(sc.nextInt())){
                         System.out.println("資料結構中有此元素");
                     }else{
                         System.out.println("資料結構中沒有此元素");
