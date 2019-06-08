@@ -65,7 +65,6 @@ class AVLTree
 	void show() {
 		Queue<Node> q = new LinkedList<>();
 		q.add(root);//將根節點放入q
-
 		int cnt = 1;//每一層個數
 		while (cnt > 0) {
 			int tmp = 0;//記錄子樹數量
@@ -78,6 +77,15 @@ class AVLTree
 				Node cur = q.poll();
 				Node zero = new Node();
 				zero.key = 0;
+				int big=0,small=0;
+
+				if(cur.left!=null && cur.right!=null){
+					big=max(cur.left.height,cur.right.height);
+					small=min(cur.left.height,cur.right.height);
+					cur.left.height=big;
+					cur.right.height=big;
+				}
+
 				if (cur.left != null) {
 					if (cur.right != null) {
 						q.add(cur.left);//加入左子節點
@@ -100,7 +108,16 @@ class AVLTree
 
 				}
 
+
+				if(cur.right == null && cur.left == null && cur.height>1){
+					q.add(zero);
+					q.add(zero);
+					tmp += 2;
+					cur.height=small;
+				}
+
 				System.out.print(cur.key + "	");
+
 			}
 			cnt = tmp;
 			System.out.println();
@@ -121,6 +138,11 @@ class AVLTree
 	int max(int a, int b)
 	{
 		return (a > b) ? a : b;
+	}
+
+	int min(int a, int b)
+	{
+		return (a > b) ? b : a;
 	}
 
 	// 節點的右旋
