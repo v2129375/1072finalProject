@@ -65,25 +65,27 @@ class AVLTree
 	void show() {
 		Queue<Node> q = new LinkedList<>();
 		q.add(root);//將根節點放入q
+		//System.out.print(" (root:"+root.key+") ");
+		//System.out.print(" (root.right:"+root.right.key+")");
 		int cnt = 1;//每一層個數
+		//int big=0;
+		boolean test=false;
+
 		while (cnt > 0) {
 			int tmp = 0;//記錄子樹數量
 
-			/*for(int a=root.height;a>0;a--) {//輸出tab
-				for (int j = 0; j < a; j++)
-					System.out.print("	");*/
-
 			for (int i = 0; i < cnt; i++) {
 				Node cur = q.poll();
+				//System.out.print("( a:"+cur.height+" )");
 				Node zero = new Node();
 				zero.key = 0;
-				int big=0,small=0;
 
-				if(cur.left!=null && cur.right!=null){
-					big=max(cur.left.height,cur.right.height);
-					small=min(cur.left.height,cur.right.height);
-					cur.left.height=big;
-					cur.right.height=big;
+
+				if(cur.left!=null && cur.right!=null && min(cur.left.height,cur.right.height)==1 && max(cur.left.height,cur.right.height)!=1){
+            /*big=max(cur.left.height,cur.right.height);
+            cur.left.height=big;
+            cur.right.height=big;*/
+					test=true;
 				}
 
 				if (cur.left != null) {
@@ -109,20 +111,20 @@ class AVLTree
 				}
 
 
-				if(cur.right == null && cur.left == null && cur.height>1){
+				if(cur.right == null && cur.left == null && test){
 					q.add(zero);
 					q.add(zero);
-					tmp += 2;
-					cur.height=small;
+					//cur.height=1;
+					tmp+=2;
+					test=false;
 				}
-
-				System.out.print(cur.key + "	");
+				//System.out.print("(b:"+cur.height+") ");
+				System.out.print(cur.key +"    ");
 
 			}
 			cnt = tmp;
 			System.out.println();
-		 }
-
+		}
 
 	}
 
