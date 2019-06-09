@@ -307,11 +307,9 @@ class AVLTree
 			return root;
 
 
-<<<<<<< HEAD
 		//try{
 			root.height = max(height(root.left),height(root.right)) + 1;// 更新現在的高度
 		//}catch (NullPointerException e){}
-=======
 
 		if(root!=null){
 			root.height = max(height(root.left),height(root.right)) + 1;// 更新現在的高度
@@ -319,8 +317,6 @@ class AVLTree
 			return root;
 		}
 
-
->>>>>>> 7d193fb3d8f54976fea1a1f82bcf6a8059df1cef
 
 
 		//再檢查平衡因子
