@@ -34,10 +34,10 @@ public class Main {
                 if(choose1==1){
                     System.out.println("請輸入要新增的元素");
                     t.root=t.insert(t.root,sc.nextInt());
-                    System.out.print("root："+t.root.key);
+                    //System.out.print("root："+t.root.key);
                 }else if(choose1==2){
                     System.out.println("請輸入要刪除的元素");
-                    t.delete(sc.nextInt());
+                    t.root=t.deleteNode(t.root,sc.nextInt());
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
                     if(t.search(sc.nextInt())){
@@ -46,6 +46,7 @@ public class Main {
                         System.out.println("資料結構中沒有此元素");
                     };
                 }else if(choose1==4){
+                    System.out.print("t.root"+t.root.key);
                     t.show(t.root);
                 }else{
                     break;

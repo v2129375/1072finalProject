@@ -303,11 +303,13 @@ class AVLTree
 			}
 		}
 
+		if (root == null)
+			return root;
 
 
-		try{
+		//try{
 			root.height = max(height(root.left),height(root.right)) + 1;// 更新現在的高度
-		}catch (NullPointerException e){}
+		//}catch (NullPointerException e){}
 
 
 		//再檢查平衡因子
