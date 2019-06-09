@@ -38,6 +38,7 @@ public class Main {
                 }else if(choose1==2){
                     System.out.println("請輸入要刪除的元素");
                     t.root=t.deleteNode(t.root,sc.nextInt());
+                    System.out.print("( "+"root.key"+" )");
                 }else if(choose1==3){
                     System.out.println("請輸入要查找的元素");
                     if(t.search(sc.nextInt())){
