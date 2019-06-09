@@ -305,9 +305,14 @@ class AVLTree
 
 
 
-		try{
+
+		if(root!=null){
 			root.height = max(height(root.left),height(root.right)) + 1;// 更新現在的高度
-		}catch (NullPointerException e){}
+		}else{
+			return root;
+		}
+
+
 
 
 		//再檢查平衡因子
@@ -332,7 +337,7 @@ class AVLTree
 		// （4）RL
 		if (balance < -1 && getBalance(root.right) > 0)
 		{
-			root.right = rightRotate(root.right);
+			root.right = rightRotate(root);
 			return leftRotate(root);
 		}
 
