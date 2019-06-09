@@ -34,7 +34,7 @@ public class Main {
                 if(choose1==1){
                     System.out.println("請輸入要新增的元素");
                     t.root=t.insert(t.root,sc.nextInt());
-                    //System.out.print("root："+t.root.key);
+                    System.out.print("root："+t.root.key);
                 }else if(choose1==2){
                     System.out.println("請輸入要刪除的元素");
                     t.delete(sc.nextInt());
