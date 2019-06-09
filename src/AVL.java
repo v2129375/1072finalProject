@@ -83,7 +83,13 @@ class AVLTree
 
 
 				if(cur.left!=null && cur.right!=null && min(cur.left.height,cur.right.height)==1 && max(cur.left.height,cur.right.height)!=1){
+<<<<<<< HEAD
 
+=======
+            /*big=max(cur.left.height,cur.right.height);
+            cur.left.height=big;
+            cur.right.height=big;*/
+>>>>>>> 4799ebfac2a08f80bf71a915ebe7e4f35a132354
 					test=true;
 				}
 
@@ -118,13 +124,16 @@ class AVLTree
 					test=false;
 				}
 				//System.out.print("(b:"+cur.height+") ");
+<<<<<<< HEAD
 				System.out.print(cur.key +"	");
+=======
+				System.out.print(cur.key +"    ");
+>>>>>>> 4799ebfac2a08f80bf71a915ebe7e4f35a132354
 
 			}
 			cnt = tmp;
 			System.out.println();
-		 }
-
+		}
 
 	}
 
@@ -305,9 +314,21 @@ class AVLTree
 
 
 
+<<<<<<< HEAD
 		try{
 			root.height = max(height(root.left),height(root.right)) + 1;// 更新現在的高度
 		}catch (NullPointerException e){}
+=======
+
+		if(root==null){
+			return root;
+		}else{
+			root.height = max(height(root.left), height(root.right)) + 1;// 更新現在的高度
+		}
+
+
+
+>>>>>>> 4799ebfac2a08f80bf71a915ebe7e4f35a132354
 
 
 		//再檢查平衡因子
@@ -332,7 +353,7 @@ class AVLTree
 		// （4）RL
 		if (balance < -1 && getBalance(root.right) > 0)
 		{
-			root.right = rightRotate(root.right);
+			root.right = rightRotate(root);
 			return leftRotate(root);
 		}
 
