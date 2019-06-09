@@ -33,7 +33,8 @@ public class Main {
                 int choose1=sc.nextInt();
                 if(choose1==1){
                     System.out.println("請輸入要新增的元素");
-                    t.add(sc.nextInt());
+                    t.root=t.insert(t.root,sc.nextInt());
+                    //System.out.print("root："+t.root.key);
                 }else if(choose1==2){
                     System.out.println("請輸入要刪除的元素");
                     t.delete(sc.nextInt());
@@ -45,7 +46,7 @@ public class Main {
                         System.out.println("資料結構中沒有此元素");
                     };
                 }else if(choose1==4){
-                    t.show();
+                    t.show(t.root);
                 }else{
                     break;
                 }

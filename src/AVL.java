@@ -20,6 +20,7 @@ class AVLTree
 {
 	Node root=new Node(); //建立根節點
 	Node add(int in){
+		//System.out.println("root:"+root.key);
 		return insert(root,in);
 	}
 
@@ -62,28 +63,28 @@ class AVLTree
 		return deleteNode(root,in);
 	}
 
-	void show() {
+	void show(Node root) {
 		Queue<Node> q = new LinkedList<>();
 		q.add(root);//將根節點放入q
+		//System.out.print(" (root:"+root.key+") ");
+		//System.out.print(" (root.right:"+root.right.key+")");
 		int cnt = 1;//每一層個數
+		//int big=0;
+		boolean test=false;
+
 		while (cnt > 0) {
 			int tmp = 0;//記錄子樹數量
 
-			/*for(int a=root.height;a>0;a--) {//輸出tab
-				for (int j = 0; j < a; j++)
-					System.out.print("	");*/
-
 			for (int i = 0; i < cnt; i++) {
 				Node cur = q.poll();
+				//System.out.print("( a:"+cur.height+" )");
 				Node zero = new Node();
 				zero.key = 0;
-				int big=0,small=0;
 
-				if(cur.left!=null && cur.right!=null){
-					big=max(cur.left.height,cur.right.height);
-					small=min(cur.left.height,cur.right.height);
-					cur.left.height=big;
-					cur.right.height=big;
+
+				if(cur.left!=null && cur.right!=null && min(cur.left.height,cur.right.height)==1 && max(cur.left.height,cur.right.height)!=1){
+
+					test=true;
 				}
 
 				if (cur.left != null) {
@@ -109,14 +110,15 @@ class AVLTree
 				}
 
 
-				if(cur.right == null && cur.left == null && cur.height>1){
+				if(cur.right == null && cur.left == null && test){
 					q.add(zero);
 					q.add(zero);
-					tmp += 2;
-					cur.height=small;
+					//cur.height=1;
+					tmp+=2;
+					test=false;
 				}
-
-				System.out.print(cur.key + "	");
+				//System.out.print("(b:"+cur.height+") ");
+				System.out.print(cur.key +"	");
 
 			}
 			cnt = tmp;
@@ -142,8 +144,9 @@ class AVLTree
 
 	int min(int a, int b)
 	{
-		return (a > b) ? b : a;
+		return (a < b) ? a : b;
 	}
+
 
 	// 節點的右旋
 	Node rightRotate(Node y)
@@ -186,55 +189,49 @@ class AVLTree
 	//加入節點
 	Node insert(Node node, int key)
 	{
-
-		if (node == null) //如果現在節點爲空，直接加入
+		/* 1. Perform the normal BST insertion */
+		if (node == null)
 			return (new Node(key));
 
-		if (key < node.key) //如果節點不爲空且小於現在的鍵值，遞迴放入insert
+		if (key < node.key)
 			node.left = insert(node.left, key);
-
-		else if (key > node.key) //如果節點不爲空且大於現在的鍵值，遞迴放入insert
+		else if (key > node.key)
 			node.right = insert(node.right, key);
-		else {
-		    System.out.println("此節點已存在");
-            return node;
-            //如果已經含有直接直接返回現在的node
-        }
+		else // Duplicate keys not allowed
+			return node;
 
-
-		//更新現在節點高度
+		/* 2. Update height of this ancestor node */
 		node.height = 1 + max(height(node.left),
 				height(node.right));
 
-		//將節點放入判斷平衡係數
+
 		int balance = getBalance(node);
 
-		//如果不平衡的四種情況
-
-		//（1）LL 需要做一次左旋
+		// If this node becomes unbalanced, then there
+		// are 4 cases Left Left Case
 		if (balance > 1 && key < node.left.key)
 			return rightRotate(node);
 
-		// （2）RR 需要做一次右旋
+		// Right Right Case
 		if (balance < -1 && key > node.right.key)
 			return leftRotate(node);
 
-		// （3）LR 需要做一次左旋一次右旋
-		if (balance > 1 && key > node.left.key)
-		{
+		// Left Right Case
+		if (balance > 1 && key > node.left.key) {
 			node.left = leftRotate(node.left);
 			return rightRotate(node);
 		}
 
-		// （4）LR 需要做一次右旋一次左旋
-		if (balance < -1 && key < node.right.key)
-		{
+		// Right Left Case
+		if (balance < -1 && key < node.right.key) {
 			node.right = rightRotate(node.right);
 			return leftRotate(node);
 		}
 
-		//如果節點加入後平衡直接返回節點
+		/* return the (unchanged) node pointer */
+
 		return node;
+
 	}
 
 	//找到最小的節點(之後刪除會用到)
@@ -309,7 +306,7 @@ class AVLTree
 
 
 		try{
-			root.height = max(height(root.left), height(root.right)) + 1;// 更新現在的高度
+			root.height = max(height(root.left),height(root.right)) + 1;// 更新現在的高度
 		}catch (NullPointerException e){}
 
 
